@@ -243,13 +243,13 @@ function Slide1() {
       </Card>
 
       {/* ④ Detection Triggers */}
-      <Arrow x1={475} y1={655} x2={590} y2={798} color={C.pink} />
-      <Card x={594} y={780} w={560} h={168} fill="#FFF5F8" stroke={C.pink}>
-        <text x={614} y={808} fontFamily={F.title} fontSize={22} fill={C.pink} fontWeight="bold">④ Detection Triggers — 自动嗅探</text>
-        <line x1={614} y1={816} x2={1133} y2={816} stroke={C.pink} strokeWidth={1} opacity={0.4} />
-        <text x={614} y={838} fontFamily={F.body} fontSize={16} fill={C.text}>Agent 识别到以下模式时自动触发记录：</text>
-        <rect x={614} y={850} width={520} height={82} rx={4} fill={C.codeBg} />
-        <Code x={626} y={869} fontSize={16} lineH={19} lines={[
+      <Arrow x1={475} y1={655} x2={590} y2={812} color={C.pink} />
+      <Card x={594} y={794} w={560} h={168} fill="#FFF5F8" stroke={C.pink}>
+        <text x={614} y={822} fontFamily={F.title} fontSize={22} fill={C.pink} fontWeight="bold">④ Detection Triggers — 自动嗅探</text>
+        <line x1={614} y1={830} x2={1133} y2={830} stroke={C.pink} strokeWidth={1} opacity={0.4} />
+        <text x={614} y={852} fontFamily={F.body} fontSize={16} fill={C.text}>Agent 识别到以下模式时自动触发记录：</text>
+        <rect x={614} y={864} width={520} height={82} rx={4} fill={C.codeBg} />
+        <Code x={626} y={883} fontSize={16} lineH={19} lines={[
           `"No, that's wrong" / "Actually..."  → correction`,
           `exit code ≠ 0 / Exception / Traceback → error`,
           `"Can you also..." / "I wish..."     → feature_req`,
