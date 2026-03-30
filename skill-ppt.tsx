@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const C = {
-  bg: "#FEFCF8",
+  bg: "#FFFFFF",
   card: "#FFF8EE",
   border: "#C4B59A",
   accent: "#E8734A",
@@ -18,9 +18,9 @@ const C = {
 };
 
 const F = {
-  title: "'Segoe Print', 'Comic Sans MS', 'Patrick Hand', cursive",
-  body: "'Segoe Print', 'Comic Sans MS', cursive",
-  code: "'Courier New', 'Consolas', monospace",
+  title: "'Microsoft YaHei', '微软雅黑', sans-serif",
+  body: "'Microsoft YaHei', '微软雅黑', sans-serif",
+  code: "'Consolas', 'Microsoft YaHei', monospace",
 };
 
 // Wobbly rect path
@@ -62,7 +62,7 @@ function Card({ x, y, w, h, fill = C.card, stroke = C.border, sw = 2, children, 
 }
 
 // Code block
-function Code({ x, y, lines, fontSize = 14, lineH = 17, maxW = 400 }) {
+function Code({ x, y, lines, fontSize = 17, lineH = 20, maxW = 400 }) {
   return (
     <g>
       {lines.map((l, i) => (
@@ -76,11 +76,11 @@ function Code({ x, y, lines, fontSize = 14, lineH = 17, maxW = 400 }) {
 
 // Badge
 function Badge({ x, y, text, color = C.accent }) {
-  const w = text.length * 8.5 + 16;
+  const w = text.length * 10 + 18;
   return (
     <g>
-      <rect x={x} y={y - 13} width={w} height={20} rx={10} fill={color} opacity={0.15} />
-      <text x={x + w / 2} y={y + 1} textAnchor="middle" fontFamily={F.body} fontSize={12} fill={color} fontWeight="bold">{text}</text>
+      <rect x={x} y={y - 15} width={w} height={22} rx={11} fill={color} opacity={0.15} />
+      <text x={x + w / 2} y={y + 2} textAnchor="middle" fontFamily={F.body} fontSize={16} fill={color} fontWeight="bold">{text}</text>
     </g>
   );
 }
@@ -97,7 +97,7 @@ function Slide1() {
       )}
 
       {/* Title */}
-      <text x={960} y={58} textAnchor="middle" fontFamily={F.title} fontSize={38} fill={C.text} fontWeight="bold">
+      <text x={960} y={58} textAnchor="middle" fontFamily={F.title} fontSize={40} fill={C.text} fontWeight="bold">
         OpenClaw Skill 结构解析
       </text>
       <text x={960} y={88} textAnchor="middle" fontFamily={F.body} fontSize={19} fill={C.textLight}>
@@ -106,96 +106,96 @@ function Slide1() {
       <line x1={300} y1={100} x2={1620} y2={100} stroke={C.border} strokeWidth={1.5} strokeDasharray="6,4" />
 
       {/* ===== Central Document ===== */}
-      <Card x={62} y={118} w={370} h={920} fill="#FFFDF7" stroke={C.border} sw={2.5}>
+      <Card x={62} y={118} w={400} h={920} fill="#FFFDF7" stroke={C.border} sw={2.5}>
         {/* Paper shadow */}
-        <rect x={68} y={124} width={358} height={908} rx={2} fill="none" stroke={C.border} strokeWidth={0.5} opacity={0.3} />
+        <rect x={68} y={124} width={388} height={908} rx={2} fill="none" stroke={C.border} strokeWidth={0.5} opacity={0.3} />
         {/* File tab */}
         <path d={wr(72, 126, 160, 28)} fill={C.accent} stroke="none" opacity={0.9} />
-        <text x={152} y={146} textAnchor="middle" fontFamily={F.code} fontSize={14} fill="#fff" fontWeight="bold">SKILL.md</text>
+        <text x={152} y={146} textAnchor="middle" fontFamily={F.code} fontSize={18} fill="#fff" fontWeight="bold">SKILL.md</text>
 
         {/* Section markers on the document */}
         {/* 1. YAML */}
-        <rect x={78} y={165} width={340} height={62} rx={3} fill={C.highlight} stroke={C.accent4} strokeWidth={1.5} strokeDasharray="4,3" />
-        <text x={88} y={183} fontFamily={F.code} fontSize={14} fill={C.textLight}>---</text>
-        <text x={88} y={198} fontFamily={F.code} fontSize={14} fill={C.accent}>name: self-improvement</text>
-        <text x={88} y={213} fontFamily={F.code} fontSize={14} fill={C.accent}>description: "Captures..."</text>
-        <text x={88} y={226} fontFamily={F.code} fontSize={14} fill={C.textLight}>---</text>
-        <circle cx={430} cy={195} r={12} fill={C.accent4} opacity={0.2} />
-        <text x={430} y={200} textAnchor="middle" fontFamily={F.title} fontSize={15} fill={C.accent4} fontWeight="bold">①</text>
+        <rect x={78} y={165} width={370} height={72} rx={3} fill={C.highlight} stroke={C.accent4} strokeWidth={1.5} strokeDasharray="4,3" />
+        <text x={88} y={185} fontFamily={F.code} fontSize={18} fill={C.textLight}>---</text>
+        <text x={88} y={202} fontFamily={F.code} fontSize={18} fill={C.accent}>name: self-improvement</text>
+        <text x={88} y={219} fontFamily={F.code} fontSize={18} fill={C.accent}>description: "Captures..."</text>
+        <text x={88} y={234} fontFamily={F.code} fontSize={18} fill={C.textLight}>---</text>
+        <circle cx={460} cy={200} r={12} fill={C.accent4} opacity={0.2} />
+        <text x={460} y={205} textAnchor="middle" fontFamily={F.title} fontSize={16} fill={C.accent4} fontWeight="bold">①</text>
 
         {/* 2. Quick Ref */}
-        <rect x={78} y={240} width={340} height={82} rx={3} fill="#EEF6FF" stroke={C.accent2} strokeWidth={1.5} strokeDasharray="4,3" />
-        <text x={88} y={258} fontFamily={F.code} fontSize={14} fill={C.accent2} fontWeight="bold">## Quick Reference</text>
-        <text x={88} y={275} fontFamily={F.code} fontSize={14} fill={C.text}>| 命令失败      | → ERRORS.md   |</text>
-        <text x={88} y={290} fontFamily={F.code} fontSize={14} fill={C.text}>| 用户纠正      | → LEARNINGS.md|</text>
-        <text x={88} y={305} fontFamily={F.code} fontSize={14} fill={C.text}>| 功能缺失      | → FEATURE_REQ |</text>
-        <circle cx={430} cy={275} r={12} fill={C.accent2} opacity={0.2} />
-        <text x={430} y={280} textAnchor="middle" fontFamily={F.title} fontSize={15} fill={C.accent2} fontWeight="bold">②</text>
+        <rect x={78} y={248} width={370} height={95} rx={3} fill="#EEF6FF" stroke={C.accent2} strokeWidth={1.5} strokeDasharray="4,3" />
+        <text x={88} y={268} fontFamily={F.code} fontSize={18} fill={C.accent2} fontWeight="bold">## Quick Reference</text>
+        <text x={88} y={288} fontFamily={F.code} fontSize={18} fill={C.text}>| 命令失败      | → ERRORS.md   |</text>
+        <text x={88} y={306} fontFamily={F.code} fontSize={18} fill={C.text}>| 用户纠正      | → LEARNINGS.md|</text>
+        <text x={88} y={324} fontFamily={F.code} fontSize={18} fill={C.text}>| 功能缺失      | → FEATURE_REQ |</text>
+        <circle cx={460} cy={292} r={12} fill={C.accent2} opacity={0.2} />
+        <text x={460} y={297} textAnchor="middle" fontFamily={F.title} fontSize={16} fill={C.accent2} fontWeight="bold">②</text>
 
         {/* 3. Logging Format */}
-        <rect x={78} y={335} width={340} height={200} rx={3} fill="#EEFBEE" stroke={C.accent3} strokeWidth={1.5} strokeDasharray="4,3" />
-        <text x={88} y={355} fontFamily={F.code} fontSize={14} fill={C.accent3} fontWeight="bold">## Logging Format</text>
-        <text x={88} y={375} fontFamily={F.code} fontSize={14} fill={C.text}>## [LRN-20250115-001] correction</text>
-        <text x={88} y={390} fontFamily={F.code} fontSize={14} fill={C.textLight}>**Logged**: 2025-01-15T10:30:00Z</text>
-        <text x={88} y={405} fontFamily={F.code} fontSize={14} fill={C.textLight}>**Priority**: high</text>
-        <text x={88} y={420} fontFamily={F.code} fontSize={14} fill={C.textLight}>**Status**: pending</text>
-        <text x={88} y={435} fontFamily={F.code} fontSize={14} fill={C.textLight}>**Area**: tests</text>
-        <text x={88} y={455} fontFamily={F.code} fontSize={14} fill={C.text}>### Summary</text>
-        <text x={88} y={470} fontFamily={F.code} fontSize={14} fill={C.text}>### Details</text>
-        <text x={88} y={485} fontFamily={F.code} fontSize={14} fill={C.text}>### Suggested Action</text>
-        <text x={88} y={500} fontFamily={F.code} fontSize={14} fill={C.text}>### Metadata</text>
-        <text x={88} y={515} fontFamily={F.code} fontSize={14} fill={C.textLight}>  - Source / Tags / See Also</text>
-        <text x={88} y={530} fontFamily={F.code} fontSize={14} fill={C.textLight}>  - Pattern-Key / Recurrence</text>
-        <circle cx={430} cy={435} r={12} fill={C.accent3} opacity={0.2} />
-        <text x={430} y={440} textAnchor="middle" fontFamily={F.title} fontSize={15} fill={C.accent3} fontWeight="bold">③</text>
+        <rect x={78} y={354} width={370} height={235} rx={3} fill="#EEFBEE" stroke={C.accent3} strokeWidth={1.5} strokeDasharray="4,3" />
+        <text x={88} y={376} fontFamily={F.code} fontSize={18} fill={C.accent3} fontWeight="bold">## Logging Format</text>
+        <text x={88} y={398} fontFamily={F.code} fontSize={18} fill={C.text}>## [LRN-20250115-001] correction</text>
+        <text x={88} y={416} fontFamily={F.code} fontSize={18} fill={C.textLight}>**Logged**: 2025-01-15T10:30:00Z</text>
+        <text x={88} y={434} fontFamily={F.code} fontSize={18} fill={C.textLight}>**Priority**: high</text>
+        <text x={88} y={452} fontFamily={F.code} fontSize={18} fill={C.textLight}>**Status**: pending</text>
+        <text x={88} y={470} fontFamily={F.code} fontSize={18} fill={C.textLight}>**Area**: tests</text>
+        <text x={88} y={492} fontFamily={F.code} fontSize={18} fill={C.text}>### Summary</text>
+        <text x={88} y={510} fontFamily={F.code} fontSize={18} fill={C.text}>### Details</text>
+        <text x={88} y={528} fontFamily={F.code} fontSize={18} fill={C.text}>### Suggested Action</text>
+        <text x={88} y={546} fontFamily={F.code} fontSize={18} fill={C.text}>### Metadata</text>
+        <text x={88} y={564} fontFamily={F.code} fontSize={18} fill={C.textLight}>  - Source / Tags / See Also</text>
+        <text x={88} y={582} fontFamily={F.code} fontSize={18} fill={C.textLight}>  - Pattern-Key / Recurrence</text>
+        <circle cx={460} cy={470} r={12} fill={C.accent3} opacity={0.2} />
+        <text x={460} y={475} textAnchor="middle" fontFamily={F.title} fontSize={16} fill={C.accent3} fontWeight="bold">③</text>
 
         {/* 4. Detection Triggers */}
-        <rect x={78} y={548} width={340} height={100} rx={3} fill="#FFF0F3" stroke={C.pink} strokeWidth={1.5} strokeDasharray="4,3" />
-        <text x={88} y={568} fontFamily={F.code} fontSize={14} fill={C.pink} fontWeight="bold">## Detection Triggers</text>
-        <text x={88} y={586} fontFamily={F.code} fontSize={14} fill={C.text}>• "No, that's wrong..."→ correction</text>
-        <text x={88} y={601} fontFamily={F.code} fontSize={14} fill={C.text}>• Command exit code≠0 → error</text>
-        <text x={88} y={616} fontFamily={F.code} fontSize={14} fill={C.text}>• "Can you also..."  → feat_req</text>
-        <text x={88} y={631} fontFamily={F.code} fontSize={14} fill={C.text}>• API differs from docs→ gap</text>
-        <circle cx={430} cy={595} r={12} fill={C.pink} opacity={0.2} />
-        <text x={430} y={600} textAnchor="middle" fontFamily={F.title} fontSize={15} fill={C.pink} fontWeight="bold">④</text>
+        <rect x={78} y={600} width={370} height={115} rx={3} fill="#FFF0F3" stroke={C.pink} strokeWidth={1.5} strokeDasharray="4,3" />
+        <text x={88} y={622} fontFamily={F.code} fontSize={18} fill={C.pink} fontWeight="bold">## Detection Triggers</text>
+        <text x={88} y={642} fontFamily={F.code} fontSize={18} fill={C.text}>• "No, that's wrong..."→ correction</text>
+        <text x={88} y={660} fontFamily={F.code} fontSize={18} fill={C.text}>• Command exit code≠0 → error</text>
+        <text x={88} y={678} fontFamily={F.code} fontSize={18} fill={C.text}>• "Can you also..."  → feat_req</text>
+        <text x={88} y={696} fontFamily={F.code} fontSize={18} fill={C.text}>• API differs from docs→ gap</text>
+        <circle cx={460} cy={655} r={12} fill={C.pink} opacity={0.2} />
+        <text x={460} y={660} textAnchor="middle" fontFamily={F.title} fontSize={16} fill={C.pink} fontWeight="bold">④</text>
 
         {/* 5. Promotion */}
-        <rect x={78} y={660} width={340} height={80} rx={3} fill="#F3EEFF" stroke={C.purple} strokeWidth={1.5} strokeDasharray="4,3" />
-        <text x={88} y={680} fontFamily={F.code} fontSize={14} fill={C.purple} fontWeight="bold">## Promoting to Project Memory</text>
-        <text x={88} y={698} fontFamily={F.code} fontSize={14} fill={C.text}>跨文件/特性适用 → CLAUDE.md</text>
-        <text x={88} y={713} fontFamily={F.code} fontSize={14} fill={C.text}>工作流模式     → AGENTS.md</text>
-        <text x={88} y={728} fontFamily={F.code} fontSize={14} fill={C.text}>行为准则       → SOUL.md</text>
-        <circle cx={430} cy={700} r={12} fill={C.purple} opacity={0.2} />
-        <text x={430} y={705} textAnchor="middle" fontFamily={F.title} fontSize={15} fill={C.purple} fontWeight="bold">⑤</text>
+        <rect x={78} y={728} width={370} height={88} rx={3} fill="#F3EEFF" stroke={C.purple} strokeWidth={1.5} strokeDasharray="4,3" />
+        <text x={88} y={750} fontFamily={F.code} fontSize={18} fill={C.purple} fontWeight="bold">## Promoting to Project Memory</text>
+        <text x={88} y={770} fontFamily={F.code} fontSize={18} fill={C.text}>跨文件/特性适用 → CLAUDE.md</text>
+        <text x={88} y={788} fontFamily={F.code} fontSize={18} fill={C.text}>工作流模式     → AGENTS.md</text>
+        <text x={88} y={806} fontFamily={F.code} fontSize={18} fill={C.text}>行为准则       → SOUL.md</text>
+        <circle cx={460} cy={770} r={12} fill={C.purple} opacity={0.2} />
+        <text x={460} y={775} textAnchor="middle" fontFamily={F.title} fontSize={16} fill={C.purple} fontWeight="bold">⑤</text>
 
         {/* 6. Hook */}
-        <rect x={78} y={752} width={340} height={82} rx={3} fill="#FFF5EE" stroke={C.accent} strokeWidth={1.5} strokeDasharray="4,3" />
-        <text x={88} y={772} fontFamily={F.code} fontSize={14} fill={C.accent} fontWeight="bold">## Hook Integration</text>
-        <text x={88} y={790} fontFamily={F.code} fontSize={14} fill={C.text}>activator.sh → 每次提交提醒</text>
-        <text x={88} y={805} fontFamily={F.code} fontSize={14} fill={C.text}>error-detector.sh → 错误自动检测</text>
-        <text x={88} y={820} fontFamily={F.code} fontSize={14} fill={C.text}>extract-skill.sh → 技能提取脚手架</text>
-        <circle cx={430} cy={790} r={12} fill={C.accent} opacity={0.2} />
-        <text x={430} y={795} textAnchor="middle" fontFamily={F.title} fontSize={15} fill={C.accent} fontWeight="bold">⑥</text>
+        <rect x={78} y={828} width={370} height={92} rx={3} fill="#FFF5EE" stroke={C.accent} strokeWidth={1.5} strokeDasharray="4,3" />
+        <text x={88} y={850} fontFamily={F.code} fontSize={18} fill={C.accent} fontWeight="bold">## Hook Integration</text>
+        <text x={88} y={870} fontFamily={F.code} fontSize={18} fill={C.text}>activator.sh → 每次提交提醒</text>
+        <text x={88} y={888} fontFamily={F.code} fontSize={18} fill={C.text}>error-detector.sh → 错误自动检测</text>
+        <text x={88} y={906} fontFamily={F.code} fontSize={18} fill={C.text}>extract-skill.sh → 技能提取脚手架</text>
+        <circle cx={460} cy={872} r={12} fill={C.accent} opacity={0.2} />
+        <text x={460} y={877} textAnchor="middle" fontFamily={F.title} fontSize={16} fill={C.accent} fontWeight="bold">⑥</text>
 
         {/* 7. Skill Extract */}
-        <rect x={78} y={846} width={340} height={62} rx={3} fill="#FFFBEE" stroke={C.accent4} strokeWidth={1.5} strokeDasharray="4,3" />
-        <text x={88} y={866} fontFamily={F.code} fontSize={14} fill={C.accent4} fontWeight="bold">## Automatic Skill Extraction</text>
-        <text x={88} y={884} fontFamily={F.code} fontSize={14} fill={C.text}>反复出现+已验证 → 提取为独立Skill</text>
-        <text x={88} y={899} fontFamily={F.code} fontSize={14} fill={C.text}>Status → promoted_to_skill</text>
-        <circle cx={430} cy={875} r={12} fill={C.accent4} opacity={0.2} />
-        <text x={430} y={880} textAnchor="middle" fontFamily={F.title} fontSize={15} fill={C.accent4} fontWeight="bold">⑦</text>
+        <rect x={78} y={932} width={370} height={70} rx={3} fill="#FFFBEE" stroke={C.accent4} strokeWidth={1.5} strokeDasharray="4,3" />
+        <text x={88} y={954} fontFamily={F.code} fontSize={18} fill={C.accent4} fontWeight="bold">## Automatic Skill Extraction</text>
+        <text x={88} y={974} fontFamily={F.code} fontSize={18} fill={C.text}>反复出现+已验证 → 提取为独立Skill</text>
+        <text x={88} y={992} fontFamily={F.code} fontSize={18} fill={C.text}>Status → promoted_to_skill</text>
+        <circle cx={460} cy={965} r={12} fill={C.accent4} opacity={0.2} />
+        <text x={460} y={970} textAnchor="middle" fontFamily={F.title} fontSize={16} fill={C.accent4} fontWeight="bold">⑦</text>
       </Card>
 
       {/* ===== Right Detail Callouts ===== */}
 
       {/* ① YAML Frontmatter */}
-      <Arrow x1={443} y1={195} x2={478} y2={155} color={C.accent4} />
-      <Card x={482} y={118} w={440} h={145} fill="#FFFDF2" stroke={C.accent4}>
-        <text x={502} y={142} fontFamily={F.title} fontSize={18} fill={C.accent4} fontWeight="bold">① YAML Frontmatter — Skill 元信息</text>
-        <line x1={502} y1={148} x2={895} y2={148} stroke={C.accent4} strokeWidth={1} opacity={0.4} />
-        <text x={502} y={168} fontFamily={F.body} fontSize={14} fill={C.text}>每个 Skill 的 "身份证"，决定何时被加载：</text>
-        <rect x={502} y={178} width={400} height={68} rx={4} fill={C.codeBg} />
-        <Code x={512} y={195} fontSize={12.5} lineH={16} lines={[
+      <Arrow x1={475} y1={200} x2={512} y2={160} color={C.accent4} />
+      <Card x={516} y={118} w={560} h={168} fill="#FFFDF2" stroke={C.accent4}>
+        <text x={538} y={146} fontFamily={F.title} fontSize={22} fill={C.accent4} fontWeight="bold">① YAML Frontmatter — Skill 元信息</text>
+        <line x1={538} y1={154} x2={1055} y2={154} stroke={C.accent4} strokeWidth={1} opacity={0.4} />
+        <text x={538} y={178} fontFamily={F.body} fontSize={17} fill={C.text}>每个 Skill 的 "身份证"，决定何时被加载：</text>
+        <rect x={538} y={188} width={518} height={78} rx={4} fill={C.codeBg} />
+        <Code x={550} y={207} fontSize={17} lineH={19} lines={[
           `name: self-improvement`,
           `description: "Captures learnings, errors,`,
           `  and corrections to enable continuous`,
@@ -204,13 +204,13 @@ function Slide1() {
       </Card>
 
       {/* ② Quick Reference */}
-      <Arrow x1={443} y1={275} x2={478} y2={295} color={C.accent2} />
-      <Card x={482} y={272} w={440} h={145} fill="#F5FAFF" stroke={C.accent2}>
-        <text x={502} y={296} fontFamily={F.title} fontSize={18} fill={C.accent2} fontWeight="bold">② Quick Reference — 速查决策表</text>
-        <line x1={502} y1={302} x2={895} y2={302} stroke={C.accent2} strokeWidth={1} opacity={0.4} />
-        <text x={502} y={322} fontFamily={F.body} fontSize={14} fill={C.text}>Agent 遇到情况时的"第一反应"路由表：</text>
-        <rect x={502} y={332} width={400} height={72} rx={4} fill={C.codeBg} />
-        <Code x={512} y={349} fontSize={12} lineH={16} lines={[
+      <Arrow x1={475} y1={292} x2={512} y2={325} color={C.accent2} />
+      <Card x={516} y={300} w={560} h={168} fill="#F5FAFF" stroke={C.accent2}>
+        <text x={538} y={328} fontFamily={F.title} fontSize={22} fill={C.accent2} fontWeight="bold">② Quick Reference — 速查决策表</text>
+        <line x1={538} y1={336} x2={1055} y2={336} stroke={C.accent2} strokeWidth={1} opacity={0.4} />
+        <text x={538} y={358} fontFamily={F.body} fontSize={17} fill={C.text}>Agent 遇到情况时的"第一反应"路由表：</text>
+        <rect x={538} y={370} width={518} height={80} rx={4} fill={C.codeBg} />
+        <Code x={550} y={389} fontSize={16} lineH={19} lines={[
           `命令/操作失败         → .learnings/ERRORS.md`,
           `用户纠正 "不对,应该是" → .learnings/LEARNINGS.md`,
           `用户要求缺失功能      → .learnings/FEATURE_REQUESTS.md`,
@@ -219,13 +219,13 @@ function Slide1() {
       </Card>
 
       {/* ③ Logging Format — this is the big one */}
-      <Arrow x1={443} y1={435} x2={478} y2={458} color={C.accent3} />
-      <Card x={482} y={426} w={500} h={268} fill="#F2FBF2" stroke={C.accent3}>
-        <text x={502} y={450} fontFamily={F.title} fontSize={18} fill={C.accent3} fontWeight="bold">③ Logging Format — 结构化知识条目</text>
-        <line x1={502} y1={456} x2={960} y2={456} stroke={C.accent3} strokeWidth={1} opacity={0.4} />
-        <text x={502} y={476} fontFamily={F.body} fontSize={13} fill={C.text}>三种条目类型：LRN（学习）/ ERR（错误）/ FEAT（功能请求）</text>
-        <rect x={502} y={486} width={462} height={195} rx={4} fill={C.codeBg} />
-        <Code x={512} y={503} fontSize={11.5} lineH={15} lines={[
+      <Arrow x1={475} y1={470} x2={512} y2={500} color={C.accent3} />
+      <Card x={516} y={480} w={620} h={298} fill="#F2FBF2" stroke={C.accent3}>
+        <text x={538} y={508} fontFamily={F.title} fontSize={22} fill={C.accent3} fontWeight="bold">③ Logging Format — 结构化知识条目</text>
+        <line x1={538} y1={516} x2={1115} y2={516} stroke={C.accent3} strokeWidth={1} opacity={0.4} />
+        <text x={538} y={538} fontFamily={F.body} fontSize={16} fill={C.text}>三种条目类型：LRN（学习）/ ERR（错误）/ FEAT（功能请求）</text>
+        <rect x={538} y={550} width={580} height={215} rx={4} fill={C.codeBg} />
+        <Code x={550} y={568} fontSize={15.5} lineH={18} lines={[
           `## [LRN-20250115-001] correction    ← 类型-日期-序号`,
           `**Logged**: 2025-01-15T10:30:00Z     ← ISO时间戳`,
           `**Priority**: high                   ← critical/high/medium/low`,
@@ -243,13 +243,13 @@ function Slide1() {
       </Card>
 
       {/* ④ Detection Triggers */}
-      <Arrow x1={443} y1={598} x2={542} y2={718} color={C.pink} />
-      <Card x={546} y={700} w={430} h={148} fill="#FFF5F8" stroke={C.pink}>
-        <text x={566} y={724} fontFamily={F.title} fontSize={18} fill={C.pink} fontWeight="bold">④ Detection Triggers — 自动嗅探</text>
-        <line x1={566} y1={730} x2={955} y2={730} stroke={C.pink} strokeWidth={1} opacity={0.4} />
-        <text x={566} y={750} fontFamily={F.body} fontSize={13} fill={C.text}>Agent 识别到以下模式时自动触发记录：</text>
-        <rect x={566} y={760} width={390} height={76} rx={4} fill={C.codeBg} />
-        <Code x={576} y={776} fontSize={12} lineH={17} lines={[
+      <Arrow x1={475} y1={655} x2={590} y2={798} color={C.pink} />
+      <Card x={594} y={780} w={560} h={168} fill="#FFF5F8" stroke={C.pink}>
+        <text x={614} y={808} fontFamily={F.title} fontSize={22} fill={C.pink} fontWeight="bold">④ Detection Triggers — 自动嗅探</text>
+        <line x1={614} y1={816} x2={1133} y2={816} stroke={C.pink} strokeWidth={1} opacity={0.4} />
+        <text x={614} y={838} fontFamily={F.body} fontSize={16} fill={C.text}>Agent 识别到以下模式时自动触发记录：</text>
+        <rect x={614} y={850} width={520} height={82} rx={4} fill={C.codeBg} />
+        <Code x={626} y={869} fontSize={16} lineH={19} lines={[
           `"No, that's wrong" / "Actually..."  → correction`,
           `exit code ≠ 0 / Exception / Traceback → error`,
           `"Can you also..." / "I wish..."     → feature_req`,
@@ -258,31 +258,31 @@ function Slide1() {
       </Card>
 
       {/* ⑤ Promotion System */}
-      <Arrow x1={443} y1={700} x2={998} y2={148} color={C.purple} />
-      <Card x={1000} y={118} w={460} h={190} fill="#F8F3FF" stroke={C.purple}>
-        <text x={1020} y={142} fontFamily={F.title} fontSize={18} fill={C.purple} fontWeight="bold">⑤ Promotion — 记忆升级机制</text>
-        <line x1={1020} y1={148} x2={1438} y2={148} stroke={C.purple} strokeWidth={1} opacity={0.4} />
-        <text x={1020} y={170} fontFamily={F.body} fontSize={13} fill={C.text}>从临时笔记 → 永久项目记忆的晋升条件：</text>
-        <rect x={1020} y={180} width={420} height={58} rx={4} fill={C.codeBg} />
-        <Code x={1030} y={197} fontSize={12} lineH={17} lines={[
+      <Arrow x1={475} y1={770} x2={1168} y2={160} color={C.purple} />
+      <Card x={1172} y={118} w={700} h={210} fill="#F8F3FF" stroke={C.purple}>
+        <text x={1194} y={146} fontFamily={F.title} fontSize={22} fill={C.purple} fontWeight="bold">⑤ Promotion — 记忆升级机制</text>
+        <line x1={1194} y1={154} x2={1850} y2={154} stroke={C.purple} strokeWidth={1} opacity={0.4} />
+        <text x={1194} y={178} fontFamily={F.body} fontSize={16} fill={C.text}>从临时笔记 → 永久项目记忆的晋升条件：</text>
+        <rect x={1194} y={190} width={660} height={62} rx={4} fill={C.codeBg} />
+        <Code x={1206} y={209} fontSize={16} lineH={19} lines={[
           `Recurrence-Count ≥ 3  （出现≥3次）`,
           `跨 ≥ 2 个不同任务     （非偶发）`,
           `30天窗口内出现         （近期相关）`,
         ]} />
-        <text x={1020} y={258} fontFamily={F.body} fontSize={13} fill={C.text}>升级目标：</text>
-        <Badge x={1020} y={278} text="CLAUDE.md → 项目事实" color={C.accent} />
-        <Badge x={1210} y={278} text="AGENTS.md → 工作流" color={C.accent2} />
-        <Badge x={1380} y={278} text="SOUL.md → 行为" color={C.purple} />
+        <text x={1194} y={275} fontFamily={F.body} fontSize={14} fill={C.text}>升级目标：</text>
+        <Badge x={1194} y={298} text="CLAUDE.md → 项目事实" color={C.accent} />
+        <Badge x={1406} y={298} text="AGENTS.md → 工作流" color={C.accent2} />
+        <Badge x={1618} y={298} text="SOUL.md → 行为" color={C.purple} />
       </Card>
 
       {/* ⑥ Hook Integration */}
-      <Arrow x1={443} y1={790} x2={998} y2={350} color={C.accent} />
-      <Card x={1000} y={320} w={460} h={210} fill="#FFF8F2" stroke={C.accent}>
-        <text x={1020} y={344} fontFamily={F.title} fontSize={18} fill={C.accent} fontWeight="bold">⑥ Hook — 自动化触发脚本</text>
-        <line x1={1020} y1={350} x2={1438} y2={350} stroke={C.accent} strokeWidth={1} opacity={0.4} />
-        <text x={1020} y={372} fontFamily={F.body} fontSize={13} fill={C.text}>三个脚本钩子，无需手动记得记录：</text>
-        <rect x={1020} y={382} width={420} height={136} rx={4} fill={C.codeBg} />
-        <Code x={1030} y={399} fontSize={11.5} lineH={15} lines={[
+      <Arrow x1={475} y1={872} x2={1168} y2={380} color={C.accent} />
+      <Card x={1172} y={350} w={700} h={230} fill="#FFF8F2" stroke={C.accent}>
+        <text x={1194} y={378} fontFamily={F.title} fontSize={22} fill={C.accent} fontWeight="bold">⑥ Hook — 自动化触发脚本</text>
+        <line x1={1194} y1={386} x2={1850} y2={386} stroke={C.accent} strokeWidth={1} opacity={0.4} />
+        <text x={1194} y={410} fontFamily={F.body} fontSize={16} fill={C.text}>三个脚本钩子，无需手动记得记录：</text>
+        <rect x={1194} y={422} width={660} height={146} rx={4} fill={C.codeBg} />
+        <Code x={1206} y={441} fontSize={15.5} lineH={17} lines={[
           `▸ activator.sh (UserPromptSubmit)`,
           `  每次提交后注入 <self-improvement-reminder>`,
           `  提醒 Agent：这次任务有可提取的知识吗？`,
@@ -297,13 +297,13 @@ function Slide1() {
       </Card>
 
       {/* ⑦ Skill Extraction */}
-      <Arrow x1={443} y1={875} x2={998} y2={568} color={C.accent4} />
-      <Card x={1000} y={542} w={460} h={175} fill="#FFFDF2" stroke={C.accent4}>
-        <text x={1020} y={566} fontFamily={F.title} fontSize={18} fill={C.accent4} fontWeight="bold">⑦ Skill Extraction — 知识结晶</text>
-        <line x1={1020} y1={572} x2={1438} y2={572} stroke={C.accent4} strokeWidth={1} opacity={0.4} />
-        <text x={1020} y={594} fontFamily={F.body} fontSize={13} fill={C.text}>当 Learning 足够成熟，提取为独立可复用 Skill：</text>
-        <rect x={1020} y={604} width={420} height={100} rx={4} fill={C.codeBg} />
-        <Code x={1030} y={621} fontSize={12} lineH={16} lines={[
+      <Arrow x1={475} y1={965} x2={1168} y2={628} color={C.accent4} />
+      <Card x={1172} y={600} w={700} h={192} fill="#FFFDF2" stroke={C.accent4}>
+        <text x={1194} y={628} fontFamily={F.title} fontSize={22} fill={C.accent4} fontWeight="bold">⑦ Skill Extraction — 知识结晶</text>
+        <line x1={1194} y1={636} x2={1850} y2={636} stroke={C.accent4} strokeWidth={1} opacity={0.4} />
+        <text x={1194} y={660} fontFamily={F.body} fontSize={16} fill={C.text}>当 Learning 足够成熟，提取为独立可复用 Skill：</text>
+        <rect x={1194} y={672} width={660} height={108} rx={4} fill={C.codeBg} />
+        <Code x={1206} y={691} fontSize={16} lineH={18} lines={[
           `提取条件:`,
           `  • See Also ≥ 2 个关联条目 (反复出现)`,
           `  • Status: resolved (已验证)`,
@@ -314,21 +314,21 @@ function Slide1() {
       </Card>
 
       {/* Bottom: lifecycle flow */}
-      <Card x={1000} y={738} w={520} h={110} fill={C.highlight} stroke={C.accent4} sw={2}>
-        <text x={1020} y={762} fontFamily={F.title} fontSize={16} fill={C.accent4} fontWeight="bold">Skill 生命周期总览</text>
-        <text x={1020} y={786} fontFamily={F.body} fontSize={14} fill={C.text}>
+      <Card x={1172} y={812} w={700} h={115} fill={C.highlight} stroke={C.accent4} sw={2}>
+        <text x={1194} y={838} fontFamily={F.title} fontSize={20} fill={C.accent4} fontWeight="bold">Skill 生命周期总览</text>
+        <text x={1194} y={864} fontFamily={F.body} fontSize={17} fill={C.text}>
           触发检测 → 结构化记录 → 关联去重 → 满足条件升级 → 提取为新 Skill
         </text>
-        <text x={1020} y={808} fontFamily={F.body} fontSize={13} fill={C.textLight}>
+        <text x={1194} y={888} fontFamily={F.body} fontSize={16} fill={C.textLight}>
           每个 SKILL.md 就是上述7大区块的组合，定义了"什么时候做什么、怎么记、怎么升级"
         </text>
-        <text x={1020} y={830} fontFamily={F.body} fontSize={13} fill={C.textLight}>
+        <text x={1194} y={912} fontFamily={F.body} fontSize={16} fill={C.textLight}>
           Agent 加载 Skill 后，相当于获得了一套"自我进化"的行为指令集
         </text>
       </Card>
 
       {/* Page indicator */}
-      <text x={960} y={1065} textAnchor="middle" fontFamily={F.body} fontSize={14} fill={C.textLight}>1 / 2</text>
+      <text x={960} y={1065} textAnchor="middle" fontFamily={F.body} fontSize={16} fill={C.textLight}>1 / 2</text>
     </svg>
   );
 }
@@ -354,69 +354,69 @@ function Slide2() {
 
       {/* ===== LEVEL 1: Triggers ===== */}
       <rect x={42} y={108} width={4} height={940} rx={2} fill={C.pink} opacity={0.6} />
-      <text x={58} y={132} fontFamily={F.title} fontSize={22} fill={C.pink} fontWeight="bold">Level 1 · 触发场景</text>
-      <text x={58} y={154} fontFamily={F.body} fontSize={13} fill={C.textLight}>Agent 在对话中自动嗅探到以下信号</text>
+      <text x={58} y={132} fontFamily={F.title} fontSize={24} fill={C.pink} fontWeight="bold">Level 1 · 触发场景</text>
+      <text x={58} y={156} fontFamily={F.body} fontSize={16} fill={C.textLight}>Agent 在对话中自动嗅探到以下信号</text>
 
       {/* Trigger cards */}
-      <Card x={58} y={168} w={285} h={120} fill="#FFF5F8" stroke={C.pink}>
-        <Badge x={72} y={188} text="correction" color={C.pink} />
-        <text x={72} y={210} fontFamily={F.body} fontSize={13} fill={C.text} fontWeight="bold">用户纠正错误</text>
-        <rect x={72} y={218} width={255} height={56} rx={3} fill={C.codeBg} />
-        <text x={82} y={235} fontFamily={F.code} fontSize={11.5} fill={C.text}>"不对，这个项目用 pnpm 不是 npm"</text>
-        <text x={82} y={252} fontFamily={F.code} fontSize={11.5} fill={C.text}>"Actually, fixtures 是 module-scoped"</text>
-        <text x={82} y={269} fontFamily={F.code} fontSize={11.5} fill={C.text}>"你说的已经过时了..."</text>
+      <Card x={58} y={168} w={330} h={138} fill="#FFF5F8" stroke={C.pink}>
+        <Badge x={74} y={192} text="correction" color={C.pink} />
+        <text x={74} y={216} fontFamily={F.body} fontSize={17} fill={C.text} fontWeight="bold">用户纠正错误</text>
+        <rect x={74} y={226} width={300} height={66} rx={3} fill={C.codeBg} />
+        <text x={86} y={246} fontFamily={F.code} fontSize={15} fill={C.text}>"不对，这个项目用 pnpm 不是 npm"</text>
+        <text x={86} y={265} fontFamily={F.code} fontSize={15} fill={C.text}>"Actually, fixtures 是 module-scoped"</text>
+        <text x={86} y={284} fontFamily={F.code} fontSize={15} fill={C.text}>"你说的已经过时了..."</text>
       </Card>
 
-      <Card x={58} y={298} w={285} h={120} fill="#FFF5F8" stroke={C.pink}>
-        <Badge x={72} y={318} text="error" color={C.accent} />
-        <text x={72} y={340} fontFamily={F.body} fontSize={13} fill={C.text} fontWeight="bold">命令/操作失败</text>
-        <rect x={72} y={348} width={255} height={56} rx={3} fill={C.codeBg} />
-        <text x={82} y={365} fontFamily={F.code} fontSize={11.5} fill={C.text}>$ docker build → platform mismatch</text>
-        <text x={82} y={382} fontFamily={F.code} fontSize={11.5} fill={C.text}>$ npm install → ERR! pnpm-lock.yaml</text>
-        <text x={82} y={399} fontFamily={F.code} fontSize={11.5} fill={C.text}>TimeoutError: payments API 30000ms</text>
+      <Card x={58} y={318} w={330} h={138} fill="#FFF5F8" stroke={C.pink}>
+        <Badge x={74} y={342} text="error" color={C.accent} />
+        <text x={74} y={366} fontFamily={F.body} fontSize={17} fill={C.text} fontWeight="bold">命令/操作失败</text>
+        <rect x={74} y={376} width={300} height={66} rx={3} fill={C.codeBg} />
+        <text x={86} y={396} fontFamily={F.code} fontSize={15} fill={C.text}>$ docker build → platform mismatch</text>
+        <text x={86} y={415} fontFamily={F.code} fontSize={15} fill={C.text}>$ npm install → ERR! pnpm-lock.yaml</text>
+        <text x={86} y={434} fontFamily={F.code} fontSize={15} fill={C.text}>TimeoutError: payments API 30000ms</text>
       </Card>
 
-      <Card x={58} y={428} w={285} h={110} fill="#FFF5F8" stroke={C.pink}>
-        <Badge x={72} y={448} text="feature_request" color={C.accent2} />
-        <text x={72} y={470} fontFamily={F.body} fontSize={13} fill={C.text} fontWeight="bold">用户请求缺失功能</text>
-        <rect x={72} y={478} width={255} height={46} rx={3} fill={C.codeBg} />
-        <text x={82} y={495} fontFamily={F.code} fontSize={11.5} fill={C.text}>"能不能导出成 CSV？"</text>
-        <text x={82} y={512} fontFamily={F.code} fontSize={11.5} fill={C.text}>"要是有暗黑模式就好了"</text>
+      <Card x={58} y={468} w={330} h={128} fill="#FFF5F8" stroke={C.pink}>
+        <Badge x={74} y={492} text="feature_request" color={C.accent2} />
+        <text x={74} y={516} fontFamily={F.body} fontSize={17} fill={C.text} fontWeight="bold">用户请求缺失功能</text>
+        <rect x={74} y={526} width={300} height={54} rx={3} fill={C.codeBg} />
+        <text x={86} y={546} fontFamily={F.code} fontSize={15} fill={C.text}>"能不能导出成 CSV？"</text>
+        <text x={86} y={565} fontFamily={F.code} fontSize={15} fill={C.text}>"要是有暗黑模式就好了"</text>
       </Card>
 
-      <Card x={58} y={548} w={285} h={110} fill="#FFF5F8" stroke={C.pink}>
-        <Badge x={72} y={568} text="knowledge_gap" color={C.purple} />
-        <text x={72} y={590} fontFamily={F.body} fontSize={13} fill={C.text} fontWeight="bold">知识过时/错误</text>
-        <rect x={72} y={598} width={255} height={46} rx={3} fill={C.codeBg} />
-        <text x={82} y={615} fontFamily={F.code} fontSize={11.5} fill={C.text}>API 实际行为 ≠ 我的理解</text>
-        <text x={82} y={632} fontFamily={F.code} fontSize={11.5} fill={C.text}>文档已更新但我引用了旧版</text>
+      <Card x={58} y={608} w={330} h={128} fill="#FFF5F8" stroke={C.pink}>
+        <Badge x={74} y={632} text="knowledge_gap" color={C.purple} />
+        <text x={74} y={656} fontFamily={F.body} fontSize={17} fill={C.text} fontWeight="bold">知识过时/错误</text>
+        <rect x={74} y={666} width={300} height={54} rx={3} fill={C.codeBg} />
+        <text x={86} y={686} fontFamily={F.code} fontSize={15} fill={C.text}>API 实际行为 ≠ 我的理解</text>
+        <text x={86} y={705} fontFamily={F.code} fontSize={15} fill={C.text}>文档已更新但我引用了旧版</text>
       </Card>
 
-      <Card x={58} y={668} w={285} h={100} fill="#FFF5F8" stroke={C.pink}>
-        <Badge x={72} y={688} text="best_practice" color={C.accent3} />
-        <text x={72} y={710} fontFamily={F.body} fontSize={13} fill={C.text} fontWeight="bold">发现更优方案</text>
-        <rect x={72} y={718} width={255} height={36} rx={3} fill={C.codeBg} />
-        <text x={82} y={735} fontFamily={F.code} fontSize={11.5} fill={C.text}>原用 setTimeout, 改用 retry+backoff</text>
-        <text x={82} y={750} fontFamily={F.code} fontSize={11.5} fill={C.text}>发现 API 变更后需重新生成 TS 客户端</text>
+      <Card x={58} y={748} w={330} h={118} fill="#FFF5F8" stroke={C.pink}>
+        <Badge x={74} y={772} text="best_practice" color={C.accent3} />
+        <text x={74} y={796} fontFamily={F.body} fontSize={17} fill={C.text} fontWeight="bold">发现更优方案</text>
+        <rect x={74} y={806} width={300} height={44} rx={3} fill={C.codeBg} />
+        <text x={86} y={826} fontFamily={F.code} fontSize={15} fill={C.text}>原用 setTimeout, 改用 retry+backoff</text>
+        <text x={86} y={843} fontFamily={F.code} fontSize={15} fill={C.text}>发现 API 变更后需重新生成 TS 客户端</text>
       </Card>
 
       {/* ===== Arrows L1→L2 ===== */}
-      <Arrow x1={350} y1={230} x2={398} y2={230} color={C.pink} sw={2} />
-      <Arrow x1={350} y1={360} x2={398} y2={360} color={C.pink} sw={2} />
-      <Arrow x1={350} y1={490} x2={398} y2={490} color={C.pink} sw={2} />
-      <Arrow x1={350} y1={605} x2={398} y2={530} color={C.pink} sw={2} />
-      <Arrow x1={350} y1={720} x2={398} y2={600} color={C.pink} sw={2} />
+      <Arrow x1={395} y1={238} x2={448} y2={238} color={C.pink} sw={2} />
+      <Arrow x1={395} y1={388} x2={448} y2={388} color={C.pink} sw={2} />
+      <Arrow x1={395} y1={535} x2={448} y2={535} color={C.pink} sw={2} />
+      <Arrow x1={395} y1={675} x2={448} y2={590} color={C.pink} sw={2} />
+      <Arrow x1={395} y1={810} x2={448} y2={680} color={C.pink} sw={2} />
 
       {/* ===== LEVEL 2: .learnings/ ===== */}
-      <rect x={400} y={108} width={4} height={940} rx={2} fill={C.accent3} opacity={0.6} />
-      <text x={416} y={132} fontFamily={F.title} fontSize={22} fill={C.accent3} fontWeight="bold">Level 2 · 写入 .learnings/</text>
-      <text x={416} y={154} fontFamily={F.body} fontSize={13} fill={C.textLight}>结构化记录，带完整上下文和元数据</text>
+      <rect x={450} y={108} width={4} height={940} rx={2} fill={C.accent3} opacity={0.6} />
+      <text x={466} y={132} fontFamily={F.title} fontSize={24} fill={C.accent3} fontWeight="bold">Level 2 · 写入 .learnings/</text>
+      <text x={466} y={156} fontFamily={F.body} fontSize={16} fill={C.textLight}>结构化记录，带完整上下文和元数据</text>
 
       {/* L2 Card: LEARNINGS.md */}
-      <Card x={416} y={168} w={380} h={280} fill="#F2FBF2" stroke={C.accent3}>
-        <text x={436} y={192} fontFamily={F.title} fontSize={16} fill={C.accent3} fontWeight="bold">📝 LEARNINGS.md 写入示例</text>
-        <rect x={436} y={202} width={340} height={232} rx={4} fill={C.codeBg} />
-        <Code x={446} y={219} fontSize={14} lineH={14.5} lines={[
+      <Card x={466} y={168} w={440} h={318} fill="#F2FBF2" stroke={C.accent3}>
+        <text x={488} y={196} fontFamily={F.title} fontSize={20} fill={C.accent3} fontWeight="bold">📝 LEARNINGS.md 写入示例</text>
+        <rect x={488} y={208} width={400} height={262} rx={4} fill={C.codeBg} />
+        <Code x={500} y={227} fontSize={17} lineH={16} lines={[
           `## [LRN-20250115-002] knowledge_gap`,
           `**Logged**: 2025-01-15T14:22:00Z`,
           `**Priority**: medium`,
@@ -440,10 +440,10 @@ function Slide2() {
       </Card>
 
       {/* L2 Card: ERRORS.md */}
-      <Card x={416} y={460} w={380} h={210} fill="#F2FBF2" stroke={C.accent3}>
-        <text x={436} y={484} fontFamily={F.title} fontSize={16} fill={C.accent3} fontWeight="bold">🔴 ERRORS.md 写入示例</text>
-        <rect x={436} y={494} width={340} height={162} rx={4} fill={C.codeBg} />
-        <Code x={446} y={511} fontSize={14} lineH={14.5} lines={[
+      <Card x={466} y={500} w={440} h={240} fill="#F2FBF2" stroke={C.accent3}>
+        <text x={488} y={528} fontFamily={F.title} fontSize={20} fill={C.accent3} fontWeight="bold">🔴 ERRORS.md 写入示例</text>
+        <rect x={488} y={540} width={400} height={186} rx={4} fill={C.codeBg} />
+        <Code x={500} y={558} fontSize={17} lineH={16} lines={[
           `## [ERR-20250115-A3F] docker_build`,
           `**Priority**: high  **Status**: pending`,
           `**Area**: infra`,
@@ -461,10 +461,10 @@ function Slide2() {
       </Card>
 
       {/* L2 Card: FEATURE_REQUESTS.md */}
-      <Card x={416} y={682} w={380} h={140} fill="#F2FBF2" stroke={C.accent3}>
-        <text x={436} y={706} fontFamily={F.title} fontSize={16} fill={C.accent3} fontWeight="bold">💡 FEATURE_REQUESTS.md 写入示例</text>
-        <rect x={436} y={716} width={340} height={92} rx={4} fill={C.codeBg} />
-        <Code x={446} y={733} fontSize={14} lineH={14.5} lines={[
+      <Card x={466} y={754} w={440} h={160} fill="#F2FBF2" stroke={C.accent3}>
+        <text x={488} y={782} fontFamily={F.title} fontSize={20} fill={C.accent3} fontWeight="bold">💡 FEATURE_REQUESTS.md 写入示例</text>
+        <rect x={488} y={794} width={400} height={106} rx={4} fill={C.codeBg} />
+        <Code x={500} y={813} fontSize={17} lineH={16} lines={[
           `## [FEAT-20250115-001] export_to_csv`,
           `**Priority**: medium`,
           `### Requested Capability`,
@@ -475,28 +475,28 @@ function Slide2() {
       </Card>
 
       {/* ===== Arrows L2→L3 ===== */}
-      <Arrow x1={805} y1={310} x2={855} y2={310} color={C.accent3} sw={2.5} />
-      <Arrow x1={805} y1={560} x2={855} y2={460} color={C.accent3} sw={2.5} />
-      <Arrow x1={805} y1={750} x2={855} y2={600} color={C.accent3} sw={2.5} />
+      <Arrow x1={915} y1={330} x2={972} y2={330} color={C.accent3} sw={2.5} />
+      <Arrow x1={915} y1={610} x2={972} y2={500} color={C.accent3} sw={2.5} />
+      <Arrow x1={915} y1={830} x2={972} y2={660} color={C.accent3} sw={2.5} />
 
       {/* Promotion condition badge */}
-      <g transform="translate(810, 370)">
-        <rect x={0} y={0} width={48} height={60} rx={8} fill={C.accent4} opacity={0.15} />
-        <text x={24} y={22} textAnchor="middle" fontFamily={F.body} fontSize={14} fill={C.accent4} fontWeight="bold">满足</text>
-        <text x={24} y={36} textAnchor="middle" fontFamily={F.body} fontSize={14} fill={C.accent4} fontWeight="bold">升级</text>
-        <text x={24} y={50} textAnchor="middle" fontFamily={F.body} fontSize={14} fill={C.accent4} fontWeight="bold">条件</text>
+      <g transform="translate(922, 400)">
+        <rect x={0} y={0} width={50} height={64} rx={8} fill={C.accent4} opacity={0.15} />
+        <text x={25} y={24} textAnchor="middle" fontFamily={F.body} fontSize={15} fill={C.accent4} fontWeight="bold">满足</text>
+        <text x={25} y={40} textAnchor="middle" fontFamily={F.body} fontSize={15} fill={C.accent4} fontWeight="bold">升级</text>
+        <text x={25} y={56} textAnchor="middle" fontFamily={F.body} fontSize={15} fill={C.accent4} fontWeight="bold">条件</text>
       </g>
 
       {/* ===== LEVEL 3: Project Memory ===== */}
-      <rect x={858} y={108} width={4} height={940} rx={2} fill={C.purple} opacity={0.6} />
-      <text x={874} y={132} fontFamily={F.title} fontSize={22} fill={C.purple} fontWeight="bold">Level 3 · 升级为项目记忆</text>
-      <text x={874} y={154} fontFamily={F.body} fontSize={13} fill={C.textLight}>反复出现的学习被提炼为永久规则，写入项目级配置</text>
+      <rect x={974} y={108} width={4} height={940} rx={2} fill={C.purple} opacity={0.6} />
+      <text x={990} y={132} fontFamily={F.title} fontSize={24} fill={C.purple} fontWeight="bold">Level 3 · 升级为项目记忆</text>
+      <text x={990} y={156} fontFamily={F.body} fontSize={16} fill={C.textLight}>反复出现的学习被提炼为永久规则，写入项目级配置</text>
 
       {/* Promotion conditions */}
-      <Card x={874} y={168} w={305} h={100} fill="#FFF8EE" stroke={C.accent4}>
-        <text x={894} y={192} fontFamily={F.title} fontSize={15} fill={C.accent4} fontWeight="bold">🔑 升级触发条件</text>
-        <rect x={894} y={202} width={265} height={52} rx={3} fill={C.codeBg} />
-        <Code x={904} y={217} fontSize={11.5} lineH={16} lines={[
+      <Card x={990} y={168} w={360} h={115} fill="#FFF8EE" stroke={C.accent4}>
+        <text x={1012} y={195} fontFamily={F.title} fontSize={19} fill={C.accent4} fontWeight="bold">🔑 升级触发条件</text>
+        <rect x={1012} y={207} width={318} height={58} rx={3} fill={C.codeBg} />
+        <Code x={1024} y={224} fontSize={15.5} lineH={18} lines={[
           `✓ Recurrence-Count ≥ 3`,
           `✓ 跨 ≥ 2 个不同任务出现`,
           `✓ 30 天窗口内发生`,
@@ -504,30 +504,30 @@ function Slide2() {
       </Card>
 
       {/* CLAUDE.md */}
-      <Card x={874} y={280} w={305} h={178} fill="#FFF0EE" stroke={C.accent}>
-        <text x={894} y={304} fontFamily={F.title} fontSize={16} fill={C.accent} fontWeight="bold">📘 → CLAUDE.md</text>
-        <text x={894} y={322} fontFamily={F.body} fontSize={12} fill={C.textLight}>项目事实、约定、陷阱（所有 Agent 通用）</text>
-        <rect x={894} y={332} width={265} height={44} rx={3} fill={C.codeBg} />
-        <text x={904} y={347} fontFamily={F.body} fontSize={12} fill={C.text} fontStyle="italic">原始学习（冗长）：</text>
-        <text x={904} y={363} fontFamily={F.code} fontSize={10.5} fill={C.textLight}>项目使用pnpm workspace, npm install失败...</text>
-        <text x={894} y={392} fontFamily={F.body} fontSize={12} fill={C.accent} fontWeight="bold">提炼后写入 CLAUDE.md：</text>
-        <rect x={894} y={400} width={265} height={44} rx={3} fill="#FFE8E2" />
-        <Code x={904} y={416} fontSize={14} lineH={14} lines={[
+      <Card x={990} y={298} w={360} h={200} fill="#FFF0EE" stroke={C.accent}>
+        <text x={1012} y={325} fontFamily={F.title} fontSize={20} fill={C.accent} fontWeight="bold">📘 → CLAUDE.md</text>
+        <text x={1012} y={345} fontFamily={F.body} fontSize={15} fill={C.textLight}>项目事实、约定、陷阱（所有 Agent 通用）</text>
+        <rect x={1012} y={357} width={318} height={50} rx={3} fill={C.codeBg} />
+        <text x={1024} y={374} fontFamily={F.body} fontSize={15} fill={C.text} fontStyle="italic">原始学习（冗长）：</text>
+        <text x={1024} y={393} fontFamily={F.code} fontSize={14} fill={C.textLight}>项目使用pnpm workspace, npm install失败...</text>
+        <text x={1012} y={425} fontFamily={F.body} fontSize={15} fill={C.accent} fontWeight="bold">提炼后写入 CLAUDE.md：</text>
+        <rect x={1012} y={435} width={318} height={50} rx={3} fill="#FFE8E2" />
+        <Code x={1024} y={452} fontSize={15.5} lineH={16} lines={[
           `## Build & Dependencies`,
           `- 包管理器: pnpm (非npm) - 用 pnpm install`,
         ]} />
       </Card>
 
       {/* AGENTS.md */}
-      <Card x={874} y={470} w={305} h={178} fill="#EEF6FF" stroke={C.accent2}>
-        <text x={894} y={494} fontFamily={F.title} fontSize={16} fill={C.accent2} fontWeight="bold">📗 → AGENTS.md</text>
-        <text x={894} y={512} fontFamily={F.body} fontSize={12} fill={C.textLight}>Agent 工作流、自动化规则</text>
-        <rect x={894} y={522} width={265} height={40} rx={3} fill={C.codeBg} />
-        <text x={904} y={537} fontFamily={F.body} fontSize={12} fill={C.text} fontStyle="italic">原始学习：</text>
-        <text x={904} y={553} fontFamily={F.code} fontSize={10.5} fill={C.textLight}>修改API后忘记重新生成TS客户端导致运行时错误</text>
-        <text x={894} y={577} fontFamily={F.body} fontSize={12} fill={C.accent2} fontWeight="bold">提炼后写入 AGENTS.md：</text>
-        <rect x={894} y={585} width={265} height={50} rx={3} fill="#E2EEFF" />
-        <Code x={904} y={601} fontSize={14} lineH={14} lines={[
+      <Card x={990} y={512} w={360} h={200} fill="#EEF6FF" stroke={C.accent2}>
+        <text x={1012} y={539} fontFamily={F.title} fontSize={20} fill={C.accent2} fontWeight="bold">📗 → AGENTS.md</text>
+        <text x={1012} y={559} fontFamily={F.body} fontSize={15} fill={C.textLight}>Agent 工作流、自动化规则</text>
+        <rect x={1012} y={571} width={318} height={46} rx={3} fill={C.codeBg} />
+        <text x={1024} y={588} fontFamily={F.body} fontSize={15} fill={C.text} fontStyle="italic">原始学习：</text>
+        <text x={1024} y={606} fontFamily={F.code} fontSize={14} fill={C.textLight}>修改API后忘记重新生成TS客户端导致运行时错误</text>
+        <text x={1012} y={633} fontFamily={F.body} fontSize={15} fill={C.accent2} fontWeight="bold">提炼后写入 AGENTS.md：</text>
+        <rect x={1012} y={643} width={318} height={56} rx={3} fill="#E2EEFF" />
+        <Code x={1024} y={660} fontSize={15.5} lineH={16} lines={[
           `## After API Changes`,
           `1. pnpm run generate:api`,
           `2. pnpm tsc --noEmit`,
@@ -535,11 +535,11 @@ function Slide2() {
       </Card>
 
       {/* SOUL.md / TOOLS.md */}
-      <Card x={874} y={660} w={305} h={130} fill="#F3EEFF" stroke={C.purple}>
-        <text x={894} y={684} fontFamily={F.title} fontSize={16} fill={C.purple} fontWeight="bold">📙 → SOUL.md / TOOLS.md</text>
-        <text x={894} y={702} fontFamily={F.body} fontSize={12} fill={C.textLight}>行为准则 / 工具陷阱（OpenClaw 专用）</text>
-        <rect x={894} y={712} width={265} height={64} rx={3} fill={C.codeBg} />
-        <Code x={904} y={729} fontSize={14} lineH={15} lines={[
+      <Card x={990} y={726} w={360} h={148} fill="#F3EEFF" stroke={C.purple}>
+        <text x={1012} y={752} fontFamily={F.title} fontSize={20} fill={C.purple} fontWeight="bold">📙 → SOUL.md / TOOLS.md</text>
+        <text x={1012} y={772} fontFamily={F.body} fontSize={15} fill={C.textLight}>行为准则 / 工具陷阱（OpenClaw 专用）</text>
+        <rect x={1012} y={784} width={318} height={74} rx={3} fill={C.codeBg} />
+        <Code x={1024} y={803} fontSize={15.5} lineH={17} lines={[
           `SOUL: "简洁回答，避免无谓免责声明"`,
           `TOOLS: "Git push 前先确认 auth"`,
           `TOOLS: "用 gh auth status 检查认证"`,
@@ -548,26 +548,26 @@ function Slide2() {
       </Card>
 
       {/* ===== LEVEL 4: Skill Extraction ===== */}
-      <Arrow x1={1185} y1={400} x2={1225} y2={400} color={C.accent4} sw={3} />
-      <rect x={1228} y={108} width={4} height={940} rx={2} fill={C.accent4} opacity={0.6} />
-      <text x={1244} y={132} fontFamily={F.title} fontSize={22} fill={C.accent4} fontWeight="bold">Level 4 · 提取为独立 Skill</text>
-      <text x={1244} y={154} fontFamily={F.body} fontSize={13} fill={C.textLight}>高价值学习结晶为可复用的新 Skill，供其他项目/Agent 加载</text>
+      <Arrow x1={1356} y1={400} x2={1402} y2={400} color={C.accent4} sw={3} />
+      <rect x={1404} y={108} width={4} height={940} rx={2} fill={C.accent4} opacity={0.6} />
+      <text x={1420} y={132} fontFamily={F.title} fontSize={24} fill={C.accent4} fontWeight="bold">Level 4 · 提取为独立 Skill</text>
+      <text x={1420} y={156} fontFamily={F.body} fontSize={16} fill={C.textLight}>高价值学习结晶为可复用的新 Skill，供其他项目/Agent 加载</text>
 
-      <Card x={1244} y={168} w={340} h={105} fill="#FFFDF2" stroke={C.accent4}>
-        <text x={1264} y={192} fontFamily={F.title} fontSize={15} fill={C.accent4} fontWeight="bold">🎯 提取条件</text>
-        <rect x={1264} y={202} width={300} height={56} rx={3} fill={C.codeBg} />
-        <Code x={1274} y={218} fontSize={11.5} lineH={16} lines={[
+      <Card x={1420} y={168} w={400} h={120} fill="#FFFDF2" stroke={C.accent4}>
+        <text x={1442} y={196} fontFamily={F.title} fontSize={19} fill={C.accent4} fontWeight="bold">🎯 提取条件</text>
+        <rect x={1442} y={208} width={358} height={62} rx={3} fill={C.codeBg} />
+        <Code x={1454} y={226} fontSize={15.5} lineH={18} lines={[
           `✓ See Also ≥ 2 (反复出现)`,
           `✓ Status: resolved (已验证可行)`,
           `✓ 跨代码库通用 (非项目特定)`,
         ]} />
       </Card>
 
-      <Card x={1244} y={285} w={340} h={260} fill="#FFFDF2" stroke={C.accent4}>
-        <text x={1264} y={309} fontFamily={F.title} fontSize={15} fill={C.accent4} fontWeight="bold">📦 提取结果示例</text>
-        <text x={1264} y={328} fontFamily={F.body} fontSize={12} fill={C.textLight}>skills/docker-m1-fixes/SKILL.md</text>
-        <rect x={1264} y={338} width={300} height={192} rx={4} fill={C.codeBg} />
-        <Code x={1274} y={355} fontSize={14} lineH={14} lines={[
+      <Card x={1420} y={302} w={400} h={295} fill="#FFFDF2" stroke={C.accent4}>
+        <text x={1442} y={330} fontFamily={F.title} fontSize={19} fill={C.accent4} fontWeight="bold">📦 提取结果示例</text>
+        <text x={1442} y={352} fontFamily={F.body} fontSize={15} fill={C.textLight}>skills/docker-m1-fixes/SKILL.md</text>
+        <rect x={1442} y={364} width={358} height={218} rx={4} fill={C.codeBg} />
+        <Code x={1454} y={382} fontSize={17} lineH={16} lines={[
           `---`,
           `name: docker-m1-fixes`,
           `description: "Fixes Docker build`,
@@ -585,73 +585,57 @@ function Slide2() {
         ]} />
       </Card>
 
-      <Card x={1244} y={557} w={340} h={86} fill="#FFFDF2" stroke={C.accent4}>
-        <text x={1264} y={581} fontFamily={F.title} fontSize={15} fill={C.accent4} fontWeight="bold">🔄 原条目状态更新</text>
-        <rect x={1264} y={591} width={300} height={38} rx={3} fill={C.codeBg} />
-        <Code x={1274} y={607} fontSize={11.5} lineH={15} lines={[
+      <Card x={1420} y={612} w={400} h={98} fill="#FFFDF2" stroke={C.accent4}>
+        <text x={1442} y={640} fontFamily={F.title} fontSize={19} fill={C.accent4} fontWeight="bold">🔄 原条目状态更新</text>
+        <rect x={1442} y={652} width={358} height={44} rx={3} fill={C.codeBg} />
+        <Code x={1454} y={669} fontSize={15.5} lineH={17} lines={[
           `**Status**: promoted_to_skill`,
           `**Skill-Path**: skills/docker-m1-fixes`,
         ]} />
       </Card>
 
       {/* ===== Bottom: Progressive Summary ===== */}
-      <Card x={1244} y={670} w={636} h={170} fill={C.highlight} stroke={C.accent4} sw={2.5}>
-        <text x={1264} y={698} fontFamily={F.title} fontSize={20} fill={C.accent4} fontWeight="bold">🧠 递进关系总结</text>
-        <line x1={1264} y1={706} x2={1858} y2={706} stroke={C.accent4} strokeWidth={1} opacity={0.4} />
+      <Card x={1420} y={730} w={460} h={180} fill={C.highlight} stroke={C.accent4} sw={2.5}>
+        <text x={1442} y={760} fontFamily={F.title} fontSize={22} fill={C.accent4} fontWeight="bold">🧠 递进关系总结</text>
+        <line x1={1442} y1={770} x2={1860} y2={770} stroke={C.accent4} strokeWidth={1} opacity={0.4} />
 
-        {/* Flow boxes */}
-        <rect x={1274} y={720} width={105} height={40} rx={6} fill={C.pink} opacity={0.2} />
-        <text x={1326} y={745} textAnchor="middle" fontFamily={F.body} fontSize={13} fill={C.pink} fontWeight="bold">触发感知</text>
-        <Arrow x1={1382} y1={740} x2={1410} y2={740} color={C.border} sw={2} />
+        {/* Flow boxes — adjusted to stay within 1920px */}
+        <rect x={1454} y={784} width={100} height={44} rx={6} fill={C.pink} opacity={0.2} />
+        <text x={1504} y={811} textAnchor="middle" fontFamily={F.body} fontSize={15} fill={C.pink} fontWeight="bold">触发感知</text>
+        <Arrow x1={1557} y1={806} x2={1588} y2={806} color={C.border} sw={2} />
 
-        <rect x={1414} y={720} width={110} height={40} rx={6} fill={C.accent3} opacity={0.2} />
-        <text x={1469} y={745} textAnchor="middle" fontFamily={F.body} fontSize={13} fill={C.accent3} fontWeight="bold">结构化记录</text>
-        <Arrow x1={1527} y1={740} x2={1555} y2={740} color={C.border} sw={2} />
+        <rect x={1592} y={784} width={108} height={44} rx={6} fill={C.accent3} opacity={0.2} />
+        <text x={1646} y={811} textAnchor="middle" fontFamily={F.body} fontSize={15} fill={C.accent3} fontWeight="bold">结构化记录</text>
+        <Arrow x1={1703} y1={806} x2={1734} y2={806} color={C.border} sw={2} />
 
-        <rect x={1559} y={720} width={105} height={40} rx={6} fill={C.purple} opacity={0.2} />
-        <text x={1611} y={745} textAnchor="middle" fontFamily={F.body} fontSize={13} fill={C.purple} fontWeight="bold">升级记忆</text>
-        <Arrow x1={1667} y1={740} x2={1695} y2={740} color={C.border} sw={2} />
+        <rect x={1738} y={784} width={100} height={44} rx={6} fill={C.purple} opacity={0.2} />
+        <text x={1788} y={811} textAnchor="middle" fontFamily={F.body} fontSize={15} fill={C.purple} fontWeight="bold">升级记忆</text>
 
-        <rect x={1699} y={720} width={110} height={40} rx={6} fill={C.accent4} opacity={0.2} />
-        <text x={1754} y={745} textAnchor="middle" fontFamily={F.body} fontSize={13} fill={C.accent4} fontWeight="bold">结晶为 Skill</text>
-
-        <text x={1274} y={786} fontFamily={F.body} fontSize={13} fill={C.text}>
-          临时笔记 (.learnings/) → 项目记忆 (CLAUDE/AGENTS.md) → 可复用技能 (新 SKILL.md)
+        <text x={1454} y={856} fontFamily={F.body} fontSize={16} fill={C.text}>
+          临时笔记 → 项目记忆 → 可复用技能
         </text>
-        <text x={1274} y={808} fontFamily={F.body} fontSize={13} fill={C.textLight}>
-          每一层的知识密度更高、适用范围更广、表达更精炼
+        <text x={1454} y={878} fontFamily={F.body} fontSize={14} fill={C.textLight}>
+          (.learnings/) → (CLAUDE/AGENTS.md) → (新 SKILL.md)
         </text>
-        <text x={1274} y={828} fontFamily={F.body} fontSize={13} fill={C.accent} fontWeight="bold">
-          Agent 每次交互都在积累，最终实现"越用越聪明"的自我进化循环
+        <text x={1454} y={900} fontFamily={F.body} fontSize={15} fill={C.accent} fontWeight="bold">
+          越用越聪明：触发→记录→升级→提取
         </text>
       </Card>
 
-      {/* Cross-session note */}
-      <Card x={1596} y={168} w={284} h={270} fill="#F8F9FA" stroke={C.border}>
-        <text x={1616} y={192} fontFamily={F.title} fontSize={15} fill={C.text} fontWeight="bold">🔗 跨会话传播</text>
-        <text x={1616} y={212} fontFamily={F.body} fontSize={12} fill={C.textLight}>OpenClaw 特有：知识跨 Agent 共享</text>
-        <rect x={1616} y={222} width={244} height={200} rx={3} fill={C.codeBg} />
-        <Code x={1626} y={239} fontSize={14} lineH={14.5} lines={[
-          `sessions_list()`,
-          `  → 查看活跃会话`,
-          ``,
-          `sessions_send(`,
-          `  sessionKey="other-session",`,
-          `  message="Learning: API需要`,
-          `    X-Custom-Header"`,
-          `)`,
-          `  → 向其他 Agent 发送学习`,
-          ``,
-          `sessions_spawn(`,
-          `  task="研究 X 并反馈",`,
-          `  label="research"`,
-          `)`,
-          `  → 派生子 Agent 做后台研究`,
+      {/* Cross-session note — moved to bottom, spanning most of width */}
+      <Card x={50} y={922} w={1830} h={100} fill="#F8F9FA" stroke={C.border}>
+        <text x={74} y={948} fontFamily={F.title} fontSize={18} fill={C.text} fontWeight="bold">🔗 跨会话传播</text>
+        <text x={220} y={948} fontFamily={F.body} fontSize={15} fill={C.textLight}>OpenClaw 特有：知识跨 Agent 共享</text>
+        <rect x={74} y={958} width={1786} height={52} rx={3} fill={C.codeBg} />
+        <Code x={88} y={974} fontSize={16} lineH={17} lines={[
+          `sessions_list()  → 查看活跃会话`,
+          `sessions_send(sessionKey="other-session", message="Learning...")  → 向其他 Agent 发送学习`,
+          `sessions_spawn(task="研究 X 并反馈", label="research")  → 派生子 Agent 做后台研究`,
         ]} />
       </Card>
 
       {/* Page indicator */}
-      <text x={960} y={1065} textAnchor="middle" fontFamily={F.body} fontSize={14} fill={C.textLight}>2 / 2</text>
+      <text x={960} y={1065} textAnchor="middle" fontFamily={F.body} fontSize={16} fill={C.textLight}>2 / 2</text>
     </svg>
   );
 }
@@ -681,7 +665,7 @@ export default function App() {
         >
           ← 上一页：Skill 结构
         </button>
-        <span style={{ fontSize: 14, color: C.textLight }}>{slide + 1} / 2</span>
+        <span style={{ fontSize: 16, color: C.textLight }}>{slide + 1} / 2</span>
         <button
           onClick={() => setSlide(1)}
           disabled={slide === 1}
